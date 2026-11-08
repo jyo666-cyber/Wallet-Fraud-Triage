@@ -1,0 +1,754 @@
+{
+  "model_version": "20261107-2024",
+  "selected_model": "Gradient Boosting + SMOTE",
+  "selection_rule": "highest validation PR-AUC among tree models that support per-alert explanations",
+  "feature_count": 34,
+  "dataset": {
+    "wallets": 903,
+    "flagged": 301,
+    "controls": 602,
+    "sources": {
+      "random_active": 602,
+      "etherscan_phish": 116,
+      "scamsniffer": 81,
+      "etherscan_malicious": 63,
+      "mew_darklist": 41
+    },
+    "date_range": [
+      "2017-06-25",
+      "2023-03-15"
+    ],
+    "label_definition": "Flagged = address on a public phishing/scam list (Etherscan phish-hack via Forta, MyEtherWallet darklist, ScamSniffer). Control = random externally-owned wallet active near the same date and on none of those lists. Controls may include unreported fraud."
+  },
+  "splits": {
+    "train": {
+      "wallets": 630,
+      "flagged": 210,
+      "from": "2017-06-25",
+      "to": "2022-04-30"
+    },
+    "validation": {
+      "wallets": 135,
+      "flagged": 45,
+      "from": "2022-05-04",
+      "to": "2022-10-11"
+    },
+    "test": {
+      "wallets": 138,
+      "flagged": 46,
+      "from": "2022-10-14",
+      "to": "2023-03-15"
+    }
+  },
+  "comparison": [
+    {
+      "model": "Decision Tree",
+      "uses_smote": false,
+      "threshold": 0.0,
+      "validation": {
+        "pr_auc": 0.45632158009602997,
+        "roc_auc": 0.590246913580247,
+        "threshold": 0.0,
+        "accuracy": 0.3333333333333333,
+        "precision": 0.3333333333333333,
+        "recall": 1.0,
+        "f1": 0.5,
+        "fpr": 1.0,
+        "tn": 0,
+        "fp": 90,
+        "fn": 0,
+        "tp": 45
+      },
+      "test": {
+        "pr_auc": 0.5904682962809199,
+        "roc_auc": 0.77398393194707,
+        "threshold": 0.0,
+        "accuracy": 0.3333333333333333,
+        "precision": 0.3333333333333333,
+        "recall": 1.0,
+        "f1": 0.5,
+        "fpr": 1.0,
+        "tn": 0,
+        "fp": 92,
+        "fn": 0,
+        "tp": 46
+      }
+    },
+    {
+      "model": "Decision Tree + SMOTE",
+      "uses_smote": true,
+      "threshold": 0.2,
+      "validation": {
+        "pr_auc": 0.45703365348816133,
+        "roc_auc": 0.6598765432098765,
+        "threshold": 0.2,
+        "accuracy": 0.6296296296296297,
+        "precision": 0.4657534246575342,
+        "recall": 0.7555555555555555,
+        "f1": 0.576271186440678,
+        "fpr": 0.43333333333333335,
+        "tn": 51,
+        "fp": 39,
+        "fn": 11,
+        "tp": 34
+      },
+      "test": {
+        "pr_auc": 0.5437704707349006,
+        "roc_auc": 0.7254253308128544,
+        "threshold": 0.2,
+        "accuracy": 0.7246376811594203,
+        "precision": 0.5689655172413793,
+        "recall": 0.717391304347826,
+        "f1": 0.6346153846153846,
+        "fpr": 0.2717391304347826,
+        "tn": 67,
+        "fp": 25,
+        "fn": 13,
+        "tp": 33
+      }
+    },
+    {
+      "model": "Random Forest",
+      "uses_smote": false,
+      "threshold": 0.15446428571428575,
+      "validation": {
+        "pr_auc": 0.6165071129253801,
+        "roc_auc": 0.7293827160493827,
+        "threshold": 0.15446428571428575,
+        "accuracy": 0.6370370370370371,
+        "precision": 0.47560975609756095,
+        "recall": 0.8666666666666667,
+        "f1": 0.6141732283464567,
+        "fpr": 0.4777777777777778,
+        "tn": 47,
+        "fp": 43,
+        "fn": 6,
+        "tp": 39
+      },
+      "test": {
+        "pr_auc": 0.7842373613726197,
+        "roc_auc": 0.8605860113421551,
+        "threshold": 0.15446428571428575,
+        "accuracy": 0.7246376811594203,
+        "precision": 0.5540540540540541,
+        "recall": 0.8913043478260869,
+        "f1": 0.6833333333333333,
+        "fpr": 0.358695652173913,
+        "tn": 59,
+        "fp": 33,
+        "fn": 5,
+        "tp": 41
+      }
+    },
+    {
+      "model": "Random Forest + SMOTE",
+      "uses_smote": true,
+      "threshold": 0.2674193121693122,
+      "validation": {
+        "pr_auc": 0.6267718927934021,
+        "roc_auc": 0.7266666666666667,
+        "threshold": 0.2674193121693122,
+        "accuracy": 0.6518518518518519,
+        "precision": 0.4857142857142857,
+        "recall": 0.7555555555555555,
+        "f1": 0.591304347826087,
+        "fpr": 0.4,
+        "tn": 54,
+        "fp": 36,
+        "fn": 11,
+        "tp": 34
+      },
+      "test": {
+        "pr_auc": 0.8071627212089132,
+        "roc_auc": 0.8745274102079394,
+        "threshold": 0.2674193121693122,
+        "accuracy": 0.7391304347826086,
+        "precision": 0.5714285714285714,
+        "recall": 0.8695652173913043,
+        "f1": 0.6896551724137931,
+        "fpr": 0.32608695652173914,
+        "tn": 62,
+        "fp": 30,
+        "fn": 6,
+        "tp": 40
+      }
+    },
+    {
+      "model": "K-Nearest Neighbors",
+      "uses_smote": false,
+      "threshold": 0.1298087278090271,
+      "validation": {
+        "pr_auc": 0.5773719938357008,
+        "roc_auc": 0.7017283950617283,
+        "threshold": 0.1298087278090271,
+        "accuracy": 0.5851851851851851,
+        "precision": 0.43956043956043955,
+        "recall": 0.8888888888888888,
+        "f1": 0.5882352941176471,
+        "fpr": 0.5666666666666667,
+        "tn": 39,
+        "fp": 51,
+        "fn": 5,
+        "tp": 40
+      },
+      "test": {
+        "pr_auc": 0.7175195824010635,
+        "roc_auc": 0.8213610586011342,
+        "threshold": 0.1298087278090271,
+        "accuracy": 0.6594202898550725,
+        "precision": 0.49382716049382713,
+        "recall": 0.8695652173913043,
+        "f1": 0.6299212598425197,
+        "fpr": 0.44565217391304346,
+        "tn": 51,
+        "fp": 41,
+        "fn": 6,
+        "tp": 40
+      }
+    },
+    {
+      "model": "K-Nearest Neighbors + SMOTE",
+      "uses_smote": true,
+      "threshold": 0.459564978613301,
+      "validation": {
+        "pr_auc": 0.6147105050669135,
+        "roc_auc": 0.7185185185185186,
+        "threshold": 0.459564978613301,
+        "accuracy": 0.7037037037037037,
+        "precision": 0.5454545454545454,
+        "recall": 0.6666666666666666,
+        "f1": 0.6,
+        "fpr": 0.2777777777777778,
+        "tn": 65,
+        "fp": 25,
+        "fn": 15,
+        "tp": 30
+      },
+      "test": {
+        "pr_auc": 0.699713295261967,
+        "roc_auc": 0.8360113421550094,
+        "threshold": 0.459564978613301,
+        "accuracy": 0.782608695652174,
+        "precision": 0.6666666666666666,
+        "recall": 0.6956521739130435,
+        "f1": 0.6808510638297872,
+        "fpr": 0.17391304347826086,
+        "tn": 76,
+        "fp": 16,
+        "fn": 14,
+        "tp": 32
+      }
+    },
+    {
+      "model": "Gradient Boosting",
+      "uses_smote": false,
+      "threshold": 0.21188754203729748,
+      "validation": {
+        "pr_auc": 0.643075515864115,
+        "roc_auc": 0.7355555555555554,
+        "threshold": 0.21188754203729748,
+        "accuracy": 0.725925925925926,
+        "precision": 0.58,
+        "recall": 0.6444444444444445,
+        "f1": 0.6105263157894737,
+        "fpr": 0.23333333333333334,
+        "tn": 69,
+        "fp": 21,
+        "fn": 16,
+        "tp": 29
+      },
+      "test": {
+        "pr_auc": 0.8540041571113369,
+        "roc_auc": 0.891304347826087,
+        "threshold": 0.21188754203729748,
+        "accuracy": 0.8333333333333334,
+        "precision": 0.7446808510638298,
+        "recall": 0.7608695652173914,
+        "f1": 0.7526881720430108,
+        "fpr": 0.13043478260869565,
+        "tn": 80,
+        "fp": 12,
+        "fn": 11,
+        "tp": 35
+      }
+    },
+    {
+      "model": "Gradient Boosting + SMOTE",
+      "uses_smote": true,
+      "threshold": 0.4194724859268976,
+      "validation": {
+        "pr_auc": 0.695411006411454,
+        "roc_auc": 0.7730864197530865,
+        "threshold": 0.4194724859268976,
+        "accuracy": 0.7333333333333333,
+        "precision": 0.5882352941176471,
+        "recall": 0.6666666666666666,
+        "f1": 0.625,
+        "fpr": 0.23333333333333334,
+        "tn": 69,
+        "fp": 21,
+        "fn": 15,
+        "tp": 30
+      },
+      "test": {
+        "pr_auc": 0.8157679193201213,
+        "roc_auc": 0.8823251417769377,
+        "threshold": 0.4194724859268976,
+        "accuracy": 0.8260869565217391,
+        "precision": 0.7391304347826086,
+        "recall": 0.7391304347826086,
+        "f1": 0.7391304347826086,
+        "fpr": 0.13043478260869565,
+        "tn": 80,
+        "fp": 12,
+        "fn": 12,
+        "tp": 34
+      }
+    }
+  ],
+  "final_test": {
+    "pr_auc": 0.7612650447702711,
+    "roc_auc": 0.871101134215501,
+    "threshold": 0.3333333333333333,
+    "accuracy": 0.8260869565217391,
+    "precision": 0.7391304347826086,
+    "recall": 0.7391304347826086,
+    "f1": 0.7391304347826086,
+    "fpr": 0.13043478260869565,
+    "tn": 80,
+    "fp": 12,
+    "fn": 12,
+    "tp": 34
+  },
+  "thresholds": {
+    "medium": 0.3333333333333333,
+    "high": 1.0,
+    "decision": 0.3333333333333333
+  },
+  "triage_on_test": {
+    "high": {
+      "wallets": 11,
+      "flagged": 11
+    },
+    "medium": {
+      "wallets": 35,
+      "flagged": 23
+    },
+    "low": {
+      "wallets": 92,
+      "flagged": 12
+    }
+  },
+  "pr_curve": [
+    {
+      "recall": 1.0,
+      "precision": 0.3333333333333333,
+      "threshold": 0.0
+    },
+    {
+      "recall": 1.0,
+      "precision": 0.38333333333333336,
+      "threshold": 0.03833014446348497
+    },
+    {
+      "recall": 1.0,
+      "precision": 0.3865546218487395,
+      "threshold": 0.17647058823529413
+    },
+    {
+      "recall": 0.9565217391304348,
+      "precision": 0.4583333333333333,
+      "threshold": 0.2
+    },
+    {
+      "recall": 0.9130434782608695,
+      "precision": 0.525,
+      "threshold": 0.2647058823529412
+    },
+    {
+      "recall": 0.7608695652173914,
+      "precision": 0.7142857142857143,
+      "threshold": 0.26603953471708847
+    },
+    {
+      "recall": 0.7391304347826086,
+      "precision": 0.7083333333333334,
+      "threshold": 0.286288986367194
+    },
+    {
+      "recall": 0.7391304347826086,
+      "precision": 0.723404255319149,
+      "threshold": 0.31018997678172683
+    },
+    {
+      "recall": 0.7391304347826086,
+      "precision": 0.7391304347826086,
+      "threshold": 0.3333333333333333
+    },
+    {
+      "recall": 0.717391304347826,
+      "precision": 0.7333333333333333,
+      "threshold": 0.4444444444444444
+    },
+    {
+      "recall": 0.6521739130434783,
+      "precision": 0.7317073170731707,
+      "threshold": 0.44610915122887806
+    },
+    {
+      "recall": 0.6521739130434783,
+      "precision": 0.75,
+      "threshold": 0.45
+    },
+    {
+      "recall": 0.30434782608695654,
+      "precision": 0.9333333333333333,
+      "threshold": 0.45184220946255277
+    },
+    {
+      "recall": 0.30434782608695654,
+      "precision": 1.0,
+      "threshold": 0.4774309908736233
+    },
+    {
+      "recall": 0.2826086956521739,
+      "precision": 1.0,
+      "threshold": 0.5
+    },
+    {
+      "recall": 0.2391304347826087,
+      "precision": 1.0,
+      "threshold": 1.0
+    }
+  ],
+  "threshold_table": [
+    {
+      "threshold": 0.3333333333333333,
+      "accuracy": 0.8260869565217391,
+      "precision": 0.7391304347826086,
+      "recall": 0.7391304347826086,
+      "f1": 0.7391304347826086,
+      "fpr": 0.13043478260869565,
+      "tn": 80,
+      "fp": 12,
+      "fn": 12,
+      "tp": 34
+    },
+    {
+      "threshold": 1.0,
+      "accuracy": 0.7463768115942029,
+      "precision": 1.0,
+      "recall": 0.2391304347826087,
+      "f1": 0.38596491228070173,
+      "fpr": 0.0,
+      "tn": 92,
+      "fp": 0,
+      "fn": 35,
+      "tp": 11
+    }
+  ],
+  "real_world_precision": [
+    {
+      "prevalence": 0.01,
+      "at_decision": 0.054140127388535034
+    },
+    {
+      "prevalence": 0.05,
+      "at_decision": 0.22972972972972977
+    },
+    {
+      "prevalence": 0.1,
+      "at_decision": 0.38636363636363635
+    }
+  ],
+  "random_split_contrast": {
+    "pr_auc": 0.8703489840760718,
+    "roc_auc": 0.9171884591774093
+  },
+  "cv_train_roc_auc": {
+    "mean": 0.9043083900226758,
+    "std": 0.028603467081654142
+  },
+  "feature_importance": [
+    {
+      "feature": "log_tx_out",
+      "description": "Outgoing transactions",
+      "importance": 0.2523197206075592
+    },
+    {
+      "feature": "log_span_days",
+      "description": "Length of activity history",
+      "importance": 0.11205889433179189
+    },
+    {
+      "feature": "repeat_out_ratio",
+      "description": "Repeat payments to the same address",
+      "importance": 0.07191783082275609
+    },
+    {
+      "feature": "log_uniq_in",
+      "description": "Distinct addresses paying in",
+      "importance": 0.06272735519481844
+    },
+    {
+      "feature": "log_first_out_delay",
+      "description": "Delay before first outgoing payment",
+      "importance": 0.04867774695652661
+    },
+    {
+      "feature": "log_eth_in_median",
+      "description": "Typical ETH received per transaction",
+      "importance": 0.0471190860529657
+    },
+    {
+      "feature": "fan_in_ratio",
+      "description": "Share of counterparties that only send funds in",
+      "importance": 0.04451781276519247
+    },
+    {
+      "feature": "log_interval_median",
+      "description": "Typical time between transactions",
+      "importance": 0.039450122853662326
+    },
+    {
+      "feature": "pass_through_ratio",
+      "description": "How much received ETH was passed straight on",
+      "importance": 0.030669330614606492
+    },
+    {
+      "feature": "log_fee",
+      "description": "Average transaction fee",
+      "importance": 0.029784707751346274
+    },
+    {
+      "feature": "log_tx_in",
+      "description": "Incoming transactions",
+      "importance": 0.028875659136212067
+    },
+    {
+      "feature": "log_hold_median",
+      "description": "Typical time funds sit before moving on",
+      "importance": 0.024614687364652
+    },
+    {
+      "feature": "contract_call_ratio",
+      "description": "Transactions calling a contract",
+      "importance": 0.021662606678978145
+    },
+    {
+      "feature": "active_day_ratio",
+      "description": "Share of days with activity",
+      "importance": 0.019123835057232526
+    },
+    {
+      "feature": "log_token_transfers",
+      "description": "Token transfers",
+      "importance": 0.018883904864340287
+    },
+    {
+      "feature": "log_token_counterparties",
+      "description": "Distinct token counterparties",
+      "importance": 0.01749589572933605
+    },
+    {
+      "feature": "log_eth_out_median",
+      "description": "Typical ETH sent per transaction",
+      "importance": 0.014184839405684515
+    },
+    {
+      "feature": "token_out_share",
+      "description": "Share of token transfers that are outgoing",
+      "importance": 0.012592181573847536
+    },
+    {
+      "feature": "interval_cv",
+      "description": "Irregularity of transaction timing",
+      "importance": 0.012014133281164964
+    },
+    {
+      "feature": "out_share",
+      "description": "Share of transactions that are outgoing",
+      "importance": 0.010992088115740074
+    },
+    {
+      "feature": "failed_ratio",
+      "description": "Failed transactions",
+      "importance": 0.00996228195572332
+    },
+    {
+      "feature": "log_eth_in_max",
+      "description": "Largest ETH receipt",
+      "importance": 0.008629699129893247
+    },
+    {
+      "feature": "log_internal_in",
+      "description": "Incoming contract payments",
+      "importance": 0.008374500975114715
+    },
+    {
+      "feature": "log_uniq_tokens",
+      "description": "Distinct tokens handled",
+      "importance": 0.008165257864057364
+    },
+    {
+      "feature": "log_max_tx_hour",
+      "description": "Busiest hour of activity",
+      "importance": 0.007104558498260496
+    },
+    {
+      "feature": "zero_value_ratio",
+      "description": "Zero-value transactions",
+      "importance": 0.006947130335966839
+    },
+    {
+      "feature": "log_gas_price",
+      "description": "Average gas price paid",
+      "importance": 0.005970241427632258
+    },
+    {
+      "feature": "log_uniq_out",
+      "description": "Distinct addresses paid",
+      "importance": 0.005237071181669691
+    },
+    {
+      "feature": "log_eth_in",
+      "description": "Total ETH received",
+      "importance": 0.004248519647491531
+    },
+    {
+      "feature": "log_eth_out_max",
+      "description": "Largest ETH payment",
+      "importance": 0.004239283207795521
+    },
+    {
+      "feature": "stablecoin_ratio",
+      "description": "Share of token transfers in stablecoins",
+      "importance": 0.004097756749948287
+    },
+    {
+      "feature": "log_eth_out",
+      "description": "Total ETH sent",
+      "importance": 0.003906134495419174
+    },
+    {
+      "feature": "out_concentration",
+      "description": "Share of outflow in the largest payment",
+      "importance": 0.0027489480756855023
+    },
+    {
+      "feature": "recent_change",
+      "description": "Change in activity over the last 7 active days",
+      "importance": 0.0006861772969284846
+    }
+  ],
+  "error_review": {
+    "false_positive": {
+      "count": 12,
+      "meaning": "legitimate-looking wallets sent for review",
+      "patterns": [
+        {
+          "feature": "log_token_counterparties",
+          "description": "Distinct token counterparties",
+          "direction": "lower",
+          "effect": 1.256761839546045
+        },
+        {
+          "feature": "log_uniq_tokens",
+          "description": "Distinct tokens handled",
+          "direction": "lower",
+          "effect": 1.2413313381481073
+        },
+        {
+          "feature": "log_token_transfers",
+          "description": "Token transfers",
+          "direction": "lower",
+          "effect": 1.11762274656373
+        },
+        {
+          "feature": "pass_through_ratio",
+          "description": "How much received ETH was passed straight on",
+          "direction": "higher",
+          "effect": 0.959145377272467
+        },
+        {
+          "feature": "zero_value_ratio",
+          "description": "Zero-value transactions",
+          "direction": "lower",
+          "effect": 0.8712488555623812
+        }
+      ]
+    },
+    "false_negative": {
+      "count": 12,
+      "meaning": "flagged wallets the model missed",
+      "patterns": [
+        {
+          "feature": "recent_change",
+          "description": "Change in activity over the last 7 active days",
+          "direction": "higher",
+          "effect": 0.8068622915718184
+        },
+        {
+          "feature": "zero_value_ratio",
+          "description": "Zero-value transactions",
+          "direction": "higher",
+          "effect": 0.6249178464040775
+        },
+        {
+          "feature": "stablecoin_ratio",
+          "description": "Share of token transfers in stablecoins",
+          "direction": "higher",
+          "effect": 0.5421757053714644
+        },
+        {
+          "feature": "repeat_out_ratio",
+          "description": "Repeat payments to the same address",
+          "direction": "higher",
+          "effect": 0.40033355175739366
+        },
+        {
+          "feature": "contract_call_ratio",
+          "description": "Transactions calling a contract",
+          "direction": "higher",
+          "effect": 0.3780149880134226
+        }
+      ]
+    }
+  },
+  "selection_check": {
+    "flagged": {
+      "wallets": 301,
+      "at_cap_share": 0.09966777408637874,
+      "median_span_days": 41.44961805555555
+    },
+    "controls": {
+      "wallets": 602,
+      "at_cap_share": 0.5481727574750831,
+      "median_span_days": 421.1939058590677
+    },
+    "test_under_cap": {
+      "threshold": 0.3333333333333333,
+      "accuracy": 0.7341772151898734,
+      "precision": 0.7441860465116279,
+      "recall": 0.7619047619047619,
+      "f1": 0.7529411764705882,
+      "fpr": 0.2972972972972973,
+      "tn": 26,
+      "fp": 11,
+      "fn": 10,
+      "tp": 32
+    },
+    "test_at_cap": {
+      "threshold": 0.3333333333333333,
+      "accuracy": 0.9491525423728814,
+      "precision": 0.6666666666666666,
+      "recall": 0.5,
+      "f1": 0.5714285714285714,
+      "fpr": 0.01818181818181818,
+      "tn": 54,
+      "fp": 1,
+      "fn": 2,
+      "tp": 2
+    }
+  }
+}

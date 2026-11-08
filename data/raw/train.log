@@ -1,0 +1,126 @@
+903 wallets (301 flagged). Skipped during collection: {'contract': 156, 'too_little_history': 144}
+train 630, val 135, test 138
+Decision Tree                    val PR-AUC 0.456 F1 0.500
+Decision Tree + SMOTE            val PR-AUC 0.457 F1 0.576
+Random Forest                    val PR-AUC 0.617 F1 0.614
+Random Forest + SMOTE            val PR-AUC 0.627 F1 0.591
+K-Nearest Neighbors              val PR-AUC 0.577 F1 0.588
+K-Nearest Neighbors + SMOTE      val PR-AUC 0.615 F1 0.600
+Gradient Boosting                val PR-AUC 0.643 F1 0.611
+Gradient Boosting + SMOTE        val PR-AUC 0.695 F1 0.625
+selected: Gradient Boosting + SMOTE
+{
+ "selected_model": "Gradient Boosting + SMOTE",
+ "splits": {
+  "train": {
+   "wallets": 630,
+   "flagged": 210,
+   "from": "2017-06-25",
+   "to": "2022-04-30"
+  },
+  "validation": {
+   "wallets": 135,
+   "flagged": 45,
+   "from": "2022-05-04",
+   "to": "2022-10-11"
+  },
+  "test": {
+   "wallets": 138,
+   "flagged": 46,
+   "from": "2022-10-14",
+   "to": "2023-03-15"
+  }
+ },
+ "final_test": {
+  "pr_auc": 0.7612650447702711,
+  "roc_auc": 0.871101134215501,
+  "threshold": 0.3333333333333333,
+  "accuracy": 0.8260869565217391,
+  "precision": 0.7391304347826086,
+  "recall": 0.7391304347826086,
+  "f1": 0.7391304347826086,
+  "fpr": 0.13043478260869565,
+  "tn": 80,
+  "fp": 12,
+  "fn": 12,
+  "tp": 34
+ },
+ "thresholds": {
+  "medium": 0.3333333333333333,
+  "high": 1.0,
+  "decision": 0.3333333333333333
+ },
+ "triage_on_test": {
+  "high": {
+   "wallets": 11,
+   "flagged": 11
+  },
+  "medium": {
+   "wallets": 35,
+   "flagged": 23
+  },
+  "low": {
+   "wallets": 92,
+   "flagged": 12
+  }
+ },
+ "real_world_precision": [
+  {
+   "prevalence": 0.01,
+   "at_decision": 0.054140127388535034
+  },
+  {
+   "prevalence": 0.05,
+   "at_decision": 0.22972972972972977
+  },
+  {
+   "prevalence": 0.1,
+   "at_decision": 0.38636363636363635
+  }
+ ],
+ "random_split_contrast": {
+  "pr_auc": 0.8703489840760718,
+  "roc_auc": 0.9171884591774093
+ },
+ "cv_train_roc_auc": {
+  "mean": 0.9043083900226758,
+  "std": 0.028603467081654142
+ },
+ "selection_check": {
+  "flagged": {
+   "wallets": 301,
+   "at_cap_share": 0.09966777408637874,
+   "median_span_days": 41.44961805555555
+  },
+  "controls": {
+   "wallets": 602,
+   "at_cap_share": 0.5481727574750831,
+   "median_span_days": 421.1939058590677
+  },
+  "test_under_cap": {
+   "threshold": 0.3333333333333333,
+   "accuracy": 0.7341772151898734,
+   "precision": 0.7441860465116279,
+   "recall": 0.7619047619047619,
+   "f1": 0.7529411764705882,
+   "fpr": 0.2972972972972973,
+   "tn": 26,
+   "fp": 11,
+   "fn": 10,
+   "tp": 32
+  },
+  "test_at_cap": {
+   "threshold": 0.3333333333333333,
+   "accuracy": 0.9491525423728814,
+   "precision": 0.6666666666666666,
+   "recall": 0.5,
+   "f1": 0.5714285714285714,
+   "fpr": 0.01818181818181818,
+   "tn": 54,
+   "fp": 1,
+   "fn": 2,
+   "tp": 2
+  }
+ }
+}
+top features: ['log_tx_out', 'log_span_days', 'repeat_out_ratio', 'log_uniq_in', 'log_first_out_delay', 'log_eth_in_median', 'fan_in_ratio', 'log_interval_median']

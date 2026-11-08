@@ -1,0 +1,204 @@
+controls: kept 451 in-band, set aside 506
+752 wallets (301 flagged). Skipped during collection: {'contract': 156, 'too_little_history': 189, 'band_mismatch': 384}
+train 502, val 128, test 122
+Decision Tree                    val PR-AUC 0.515 F1 0.531
+Decision Tree + SMOTE            val PR-AUC 0.521 F1 0.559
+Random Forest                    val PR-AUC 0.693 F1 0.643
+Random Forest + SMOTE            val PR-AUC 0.717 F1 0.674
+K-Nearest Neighbors              val PR-AUC 0.624 F1 0.659
+K-Nearest Neighbors + SMOTE      val PR-AUC 0.626 F1 0.617
+Gradient Boosting                val PR-AUC 0.735 F1 0.705
+Gradient Boosting + SMOTE        val PR-AUC 0.739 F1 0.700
+selected: Gradient Boosting + SMOTE
+{
+ "selected_model": "Gradient Boosting + SMOTE",
+ "splits": {
+  "train": {
+   "wallets": 502,
+   "flagged": 210,
+   "from": "2017-06-25",
+   "to": "2022-04-30"
+  },
+  "validation": {
+   "wallets": 128,
+   "flagged": 45,
+   "from": "2022-05-04",
+   "to": "2022-10-11"
+  },
+  "test": {
+   "wallets": 122,
+   "flagged": 46,
+   "from": "2022-10-14",
+   "to": "2023-03-15"
+  }
+ },
+ "final_test": {
+  "pr_auc": 0.6737499324965321,
+  "roc_auc": 0.7787471395881007,
+  "threshold": 0.4090909090909091,
+  "accuracy": 0.7622950819672131,
+  "precision": 0.6808510638297872,
+  "recall": 0.6956521739130435,
+  "f1": 0.6881720430107527,
+  "fpr": 0.19736842105263158,
+  "tn": 61,
+  "fp": 15,
+  "fn": 14,
+  "tp": 32
+ },
+ "thresholds": {
+  "medium": 0.4090909090909091,
+  "high": 1.0,
+  "decision": 0.4090909090909091
+ },
+ "triage_on_test": {
+  "high": {
+   "wallets": 7,
+   "flagged": 6
+  },
+  "medium": {
+   "wallets": 40,
+   "flagged": 26
+  },
+  "low": {
+   "wallets": 75,
+   "flagged": 14
+  }
+ },
+ "real_world_precision": [
+  {
+   "prevalence": 0.01,
+   "at_decision": 0.03437844561929264
+  },
+  {
+   "prevalence": 0.05,
+   "at_decision": 0.15647921760391198
+  },
+  {
+   "prevalence": 0.1,
+   "at_decision": 0.2814163388104606
+  }
+ ],
+ "random_split_contrast": {
+  "pr_auc": 0.8297308334297715,
+  "roc_auc": 0.8547385620915032
+ },
+ "cv_train_roc_auc": {
+  "mean": 0.8605730427764327,
+  "std": 0.022769301387178004
+ },
+ "selection_check": {
+  "flagged": {
+   "wallets": 301,
+   "at_cap_share": 0.09966777408637874,
+   "median_span_days": 41.44961805555555
+  },
+  "controls": {
+   "wallets": 451,
+   "at_cap_share": 0.23059866962305986,
+   "median_span_days": 294.5896875
+  },
+  "test_under_cap": {
+   "threshold": 0.4090909090909091,
+   "accuracy": 0.7623762376237624,
+   "precision": 0.7368421052631579,
+   "recall": 0.6666666666666666,
+   "f1": 0.7,
+   "fpr": 0.1694915254237288,
+   "tn": 49,
+   "fp": 10,
+   "fn": 14,
+   "tp": 28
+  },
+  "test_at_cap": {
+   "threshold": 0.4090909090909091,
+   "accuracy": 0.7619047619047619,
+   "precision": 0.4444444444444444,
+   "recall": 1.0,
+   "f1": 0.6153846153846154,
+   "fpr": 0.29411764705882354,
+   "tn": 12,
+   "fp": 5,
+   "fn": 0,
+   "tp": 4
+  },
+  "test_by_band": [
+   {
+    "band": "3-9 items",
+    "dataset_flagged": 91,
+    "dataset_controls": 108,
+    "threshold": 0.4090909090909091,
+    "accuracy": 0.6363636363636364,
+    "precision": 0.7142857142857143,
+    "recall": 0.45454545454545453,
+    "f1": 0.5555555555555556,
+    "fpr": 0.18181818181818182,
+    "tn": 9,
+    "fp": 2,
+    "fn": 6,
+    "tp": 5
+   },
+   {
+    "band": "10-29 items",
+    "dataset_flagged": 72,
+    "dataset_controls": 84,
+    "threshold": 0.4090909090909091,
+    "accuracy": 0.7419354838709677,
+    "precision": 0.75,
+    "recall": 0.5,
+    "f1": 0.6,
+    "fpr": 0.10526315789473684,
+    "tn": 17,
+    "fp": 2,
+    "fn": 6,
+    "tp": 6
+   },
+   {
+    "band": "30-99 items",
+    "dataset_flagged": 67,
+    "dataset_controls": 117,
+    "threshold": 0.4090909090909091,
+    "accuracy": 0.8611111111111112,
+    "precision": 0.7692307692307693,
+    "recall": 0.8333333333333334,
+    "f1": 0.8,
+    "fpr": 0.125,
+    "tn": 21,
+    "fp": 3,
+    "fn": 2,
+    "tp": 10
+   },
+   {
+    "band": "100-299 items",
+    "dataset_flagged": 58,
+    "dataset_controls": 116,
+    "threshold": 0.4090909090909091,
+    "accuracy": 0.7619047619047619,
+    "precision": 0.5833333333333334,
+    "recall": 1.0,
+    "f1": 0.7368421052631579,
+    "fpr": 0.35714285714285715,
+    "tn": 9,
+    "fp": 5,
+    "fn": 0,
+    "tp": 7
+   },
+   {
+    "band": "300+ items",
+    "dataset_flagged": 13,
+    "dataset_controls": 26,
+    "threshold": 0.4090909090909091,
+    "accuracy": 0.75,
+    "precision": 0.5714285714285714,
+    "recall": 1.0,
+    "f1": 0.7272727272727273,
+    "fpr": 0.375,
+    "tn": 5,
+    "fp": 3,
+    "fn": 0,
+    "tp": 4
+   }
+  ]
+ }
+}
+top features: ['log_span_days', 'log_first_out_delay', 'fan_in_ratio', 'log_uniq_in', 'log_tx_out', 'log_interval_median', 'pass_through_ratio', 'repeat_out_ratio']

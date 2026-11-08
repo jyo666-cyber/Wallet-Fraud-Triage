@@ -1,0 +1,22 @@
+candidate wallets by source: {'etherscan_phish': 5617, 'scamsniffer': 2530, 'etherscan_malicious': 1616, 'mew_darklist': 201}
+positives: have 301, want 300
+positives done: 301
+matched controls: 96 already, 506 to go
+  controls 25/506 (604s, screened 1209)
+skip control /api/v2/addresses/0x974caa59e49682cda0ad2bbe82983419a2ecc400/transactions failed after 6 attempts (HTTP 500)
+  controls 50/506 (1516s, screened 2848)
+  controls 75/506 (2290s, screened 4400)
+  controls 100/506 (2939s, screened 5722)
+  controls 125/506 (3459s, screened 6634)
+  controls 150/506 (4055s, screened 7764)
+skip control /api/v2/addresses/0x79b7a69d90c82e014bf0315e164208119b510fa0/internal-transactions failed after 6 attempts (ReadTimeout: )
+  controls 175/506 (4674s, screened 9142)
+  controls 200/506 (5258s, screened 10077)
+  controls 225/506 (5771s, screened 11086)
+  controls 250/506 (6308s, screened 12169)
+  controls 275/506 (6994s, screened 13558)
+  controls 300/506 (15838s, screened 15255)
+  controls 325/506 (16404s, screened 16384)
+  controls 350/506 (16906s, screened 17350)
+controls done: 355, left unfilled: 151
+COLLECTION COMPLETE
